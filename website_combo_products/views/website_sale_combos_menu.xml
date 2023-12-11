@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_combo_products"
+            model="ir.actions.act_window">
+        <field name="name">Combo Products </field>
+        <field name="res_model">website.sale.combo</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem id="sales_order_combo_menu"
+              parent="website_sale.menu_catalog" name="Combo products"
+              sequence='2' action="action_combo_products"/>
+</odoo>

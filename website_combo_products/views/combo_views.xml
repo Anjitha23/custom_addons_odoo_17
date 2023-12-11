@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="website_combo_product_template" name="Combos">
+        <t t-call="website.layout">
+            <div class="container">
+                <div class="header"
+                     style="display: flex; align-items: center; justify-content: center; flex-direction: column; margin-bottom: 20px;">
+                    <img src="website_combo_products/static/src/img/icon_image.png"
+                         alt="Icon" class="icon"
+                         style="width: 70px; height: 70px; margin-bottom: 10px;"/>
+                    <div class="text-container">
+                        <h4 style="margin: 0; font-size: 20px; font-weight: bold;">
+                            Combos Of,
+                            <t t-esc="request.env.user.name"/>
+                        </h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <t t-if="not combo_product">
+                        <div class="col-md-12" style="text-align: center;">
+                            <h5>There are no combo products to display.</h5>
+                        </div>
+                    </t>
+                    <t t-foreach="combo_product" t-as="combo">
+                        <div class="col-md-3">
+                            <div class="card"
+                                 style="border: 1px solid #ddd; border-radius: 8px; overflow: hidden; margin-bottom: 20px;">
+                                <div class="card-body" style="padding:15px">
+                                    <b class="name"
+                                       style="color: #714B67; transition: color 0.3s; margin-bottom: 10px;">
+                                        <a t-attf-href="/combo_product/#{combo.id}">
+                                            <t t-esc="combo.name"/>
+                                        </a>
+                                    </b>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>

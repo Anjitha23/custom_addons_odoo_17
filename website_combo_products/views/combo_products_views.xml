@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="combo_product_page" name="Combo Product Page">
+        <t t-call="website.layout">
+            <div class="container">
+                <div class="header"
+                     style="display: flex; align-items: center; justify-content: center; flex-direction: column; margin-bottom: 20px;">
+                    <div class="text-container">
+                        <h4 style="margin: 0; font-size: 20px; font-weight: bold;">
+                            Combo Products Of,
+                            <t t-esc="request.env.user.name"/>
+                        </h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <t t-foreach="products" t-as="product">
+                        <div class="col-md-3">
+                            <div class="card"
+                                 style="border: 1px solid #ddd; border-radius: 8px; overflow: hidden; margin-bottom: 20px;">
+                                <!-- Display product information here -->
+                                <div>
+                                    <img t-attf-src="data:image/png;base64,{{ product.image_1920 }}"
+                                         alt="Product Image"
+                                         class="card-img-top img-fluid"/>
+                                </div>
+                                <div class="card-body" style="padding:15px">
+                                    <b class="name"
+                                       style="color: #714B67; transition: color 0.3s; margin-bottom: 10px;">
+                                        <t t-esc="product.name"/>
+                                    </b>
+                                    <br>
+                                        <b class="price"
+                                           style="color: #333; margin: 0;">
+                                            <t t-esc="product.list_price"/>
+                                        </b>
+                                    </br>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </div>
+                <div style="text-align: center;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            margin-top: 20px;
+                            margin-bottom: 20px;">
+                    <a t-att-href="'/add_to_cart?product_id=' + str(product.id)"
+                       class="btn btn-primary"
+                       style="width: 200px; height: 40px;">
+                        <b>Add to Cart</b>
+                    </a>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>

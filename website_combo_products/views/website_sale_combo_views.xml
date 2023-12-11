@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!-- tree view -->
+    <record id="website_sale_combos_tree_view" model="ir.ui.view">
+        <field name="name">website.sale.combo.tree.view</field>
+        <field name="model">website.sale.combo</field>
+        <field name="arch" type="xml">
+            <tree string="Combos">
+                <field name="name" string="Reference"/>
+                <field name="combo_name"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- form view -->
+    <record id="website_sale_combos_form_view" model="ir.ui.view">
+        <field name="name">website.sale.combo.form.view</field>
+        <field name="model">website.sale.combo</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <!-- Display employee name and date above the notebook page -->
+                    <group>
+                        <field name="name" style="width=500px;font-size:20px;"/>
+                        <field name="combo_name"/>
+                    </group>
+
+                    <!-- Notebook with a page for email body -->
+                    <notebook>
+                        <page string="Combo Products">
+                            <field name="product_ids"/>
+                        </page>
+                    </notebook>
+
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"
+                           groups="base.group_user"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+</odoo>

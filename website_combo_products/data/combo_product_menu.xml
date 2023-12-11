@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!--    form view-->
+    <record id="website_combo_product_menu" model="website.menu">
+        <field name="name">Combos</field>
+        <field name="url">/combos</field>
+        <field name="parent_id" ref="website.main_menu"/>
+        <field name="sequence" type="int">40</field>
+    </record>
+</odoo>
