@@ -1,7 +1,7 @@
 # -- coding: utf-8 --
-from odoo import http, fields
+from odoo import http
 from odoo.addons.website_sale.controllers.main import WebsiteSale, QueryURL, lazy, TableCompute
-from odoo.http import request
+# from odoo.http import request
 
 
 class WebsiteComboVisibility(WebsiteSale):
@@ -39,40 +39,33 @@ class WebsiteComboVisibility(WebsiteSale):
                         'product_ids')
                 else:
                     combo_product_templates = http.request.env['product.template']
-            else:
-                combo_product_templates = http.request.env['product.template'].search([])
 
-            print(f'Length of combo_product_templates before filtering: {len(combo_product_templates)}')
-            products = combo_product_templates.filtered(
-                lambda t: t.website_published and t.sale_ok
-            )
-            print(f'Length of combo_product_templates after filtering: {len(combo_product_templates)}')
+                print(f'Length of combo_product_templates before filtering: {len(combo_product_templates)}')
+                products = combo_product_templates.filtered(
+                    lambda t: t.website_published and t.sale_ok
+                )
+                print(f'Length of combo_product_templates after filtering: {len(combo_product_templates)}')
 
-            if not combo_product_templates:
-                print('lllll')
-                return result
+                pager = website.pager(url='/shop',
+                                      total=len(products),
+                                      page=page, step=result.qcontext['ppg'], scope=7, url_args=post)
+                offset = pager['offset']
+                products = products[offset:offset + result.qcontext['ppg']]
+                products = products.filtered(
+                    lambda t: t.website_published and t.sale_ok
+                )
+                print(products)
 
-            pager = website.pager(url='/shop',
-                                  total=len(combo_product_templates),
-                                  page=page, step=result.qcontext['ppg'], scope=7, url_args=post)
-            offset = pager['offset']
-            products = combo_product_templates[offset:offset + result.qcontext['ppg']]
-            products = products.filtered(
-                lambda t: t.website_published and t.sale_ok
-            )
-            print(products)
+                products_prices = lazy(lambda: products._get_sales_prices(result.qcontext['pricelist'],
+                                                                          result.qcontext['fiscal_position']))
 
-            products_prices = lazy(lambda: products._get_sales_prices(result.qcontext['pricelist'],
-                                                                      result.qcontext['fiscal_position']))
-
-            result.qcontext['bins'] = lazy(
-                lambda: TableCompute().process(products, result.qcontext['ppg'], result.qcontext['ppr']))
-            result.qcontext['get_product_prices'] = lambda product: lazy(
-                lambda: products_prices[product.id])
-            result.qcontext['pager'] = pager
-            result.qcontext['products_prices'] = products_prices
-            result.qcontext[
-                'template_to_render'] = 'website_combo_products.combo_products_website_aside'
+                result.qcontext['bins'] = lazy(
+                    lambda: TableCompute().process(products, result.qcontext['ppg'], result.qcontext['ppr']))
+                result.qcontext['get_product_prices'] = lambda product: lazy(
+                    lambda: products_prices[product.id])
+                result.qcontext['pager'] = pager
+                result.qcontext['products_prices'] = products_prices
+                result.qcontext[
+                    'template_to_render'] = 'website_combo_products.combo_products_website_aside'
 
         return result
-
