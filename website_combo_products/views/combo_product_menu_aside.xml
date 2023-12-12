@@ -14,7 +14,7 @@
                                    class="form-check-input"
                                    t-att-value="combo"
                                    t-att-checked="'checked' if combo in request.httprequest.args.getlist('combo_products') else None"
-                                   onchange="this.form.submit()"/>
+                                   />
                             <label>
                                 <t t-esc="combo"/>
                             </label>

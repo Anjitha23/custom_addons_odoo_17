@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """adding a field product to customers"""
-from odoo import fields, models, _
+from odoo import api, fields, models, _
 
 
 class ResPartner(models.Model):
@@ -19,3 +19,5 @@ class ResPartner(models.Model):
             vals['name'] = self.env['ir.sequence'].next_by_code(
                 'website.sale.combo') or _('New')
         return super().create(vals)
+
+

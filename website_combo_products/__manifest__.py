@@ -1,7 +1,7 @@
 {
     'name': "Website Combo Products",
     'version': '17.0.1.0.0',
-    'depends': ['website','website_sale'],
+    'depends': ['website', 'website_sale'],
     'author': "Anjitha",
     'category': 'Category',
     'description': """Buying combo products of the logged in user online""",
@@ -15,7 +15,12 @@
         'views/website_sale_combos_menu.xml',
         'views/website_sale_combo_views.xml',
         'views/combo_products_views.xml',
-         ],
+    ],
+    'assets': {
+        'web.assets_frontend': [
+            'website_combo_products/static/src/js/website_sale.js',
+        ],
+    },
 
     'installable': True,
     'application': True,
