@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
-    <template id="combo_products_website_aside" inherit_id="website_sale.filter_products_price">
+    <template id="combo_products_website_aside"
+              inherit_id="website_sale.filter_products_price">
         <xpath expr="//div[@id='o_wsale_price_range_option']" position="after">
             <div class="container">
                 <i class="fa fa-cart-plus fa-2x" aria-hidden="true"/>
@@ -8,10 +9,17 @@
                 <form action="/shop" method="get">
                     <t t-if="combo_products">
                         <t t-foreach="combo_products" t-as="combo">
-                            <input type="checkbox" name="combo_products" t-att-value="combo"/>
-                            <label><t t-esc="combo"/></label><br/>
+                            <input type="checkbox"
+                                   name="combo_products"
+                                   class="form-check-input"
+                                   t-att-value="combo"
+                                   t-att-checked="'checked' if combo in request.httprequest.args.getlist('combo_products') else None"
+                                   onchange="this.form.submit()"/>
+                            <label>
+                                <t t-esc="combo"/>
+                            </label>
+                            <br/>
                         </t>
-                        <input type="submit" value="Apply"/>
                     </t>
                     <t t-else="">
                         <p>No combo products associated.</p>
