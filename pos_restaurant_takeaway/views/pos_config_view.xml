@@ -18,7 +18,7 @@
                     </setting>
                     <setting string="Generate Token"
                              help="This Token number starts from 1">
-                    <field name="token"/>
+                    <field name="generate_token"/>
                     </setting>
                 </block>
             </xpath>
