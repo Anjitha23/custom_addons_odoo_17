@@ -3,7 +3,8 @@
 from odoo import api, fields, models, _
 
 
-class ResPartner(models.Model):
+class WebsiteSaleCombo(models.Model):
+    """class for website sale combo model"""
     _name = 'website.sale.combo'
     _inherit = 'mail.thread'
 

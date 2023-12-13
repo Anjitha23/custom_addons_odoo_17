@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
+<!--    template to display the combos of the logged in user-->
     <template id="website_combo_product_template" name="Combos">
         <t t-call="website.layout">
             <div class="container">

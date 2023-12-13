@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+<!--    action for combo products menu-->
     <record id="action_combo_products"
             model="ir.actions.act_window">
         <field name="name">Combo Products </field>

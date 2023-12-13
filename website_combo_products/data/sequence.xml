@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
     <data>
+<!--        combo product sequence-->
         <record id="seq_combo" model="ir.sequence">
             <field name="code">website.sale.combo</field>
             <field name="name"/>

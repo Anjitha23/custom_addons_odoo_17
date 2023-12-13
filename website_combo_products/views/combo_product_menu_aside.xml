@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
+<!--    template to display the combo names-->
     <template id="combo_products_website_aside"
               inherit_id="website_sale.filter_products_price">
         <xpath expr="//div[@id='o_wsale_price_range_option']" position="after">
