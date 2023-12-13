@@ -11,18 +11,21 @@ publicWidget.registry.combineFilters = publicWidget.Widget.extend({
         ev.preventDefault();
         console.log('_onChangeAttribute function called');
 
-        // Get the selected combo_ids from the checked checkboxes
-        var combo_ids = [];
-        $('.form-check-input:checked').each(function () {
-            combo_ids.push($(this).val());
-        });
-
         // Update the URL with the selected combo_ids
         var url = new URL(window.location.href);
-        url.searchParams.set('combo_products', combo_ids.join(','));
+        url.searchParams.set('combo_product', ev.target.value);
         window.location.href = url;
 
-        // Trigger a custom event or perform additional actions if needed
-        // $(ev.currentTarget).closest("form").submit();
+        // Add an input type (hidden) to the form with the selected combo_products value
+        var form = $(ev.currentTarget).closest("form");
+        console.log('form',form)
+        $('<input>').attr({
+            type: 'hidden',  // Fix: use 'hidden' instead of 'visible'
+            name: 'combo_product',
+            value: ev.target.value,
+        }).appendTo(form);
+
+        // Submit the form
+        form.submit();
     },
 });
