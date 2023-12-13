@@ -10,6 +10,9 @@ class PosConfiguration(models.Model):
     dine_in = fields.Boolean(
         string='Pos TakeAway',
         help="TakeAway,Dine-in on Restaurant")
+    token = fields.Boolean(
+        string='Generate Token',
+        help="This Token number starts from 1")
 
 
 class ResConfSettings(models.TransientModel):
@@ -21,3 +24,6 @@ class ResConfSettings(models.TransientModel):
         string='Pos TakeAway',
         help="TakeAway,Dine-in on Restaurant",
         readonly=False)
+    token = fields.Boolean(
+        string='Generate Token',
+        help="This Token number starts from 1")
