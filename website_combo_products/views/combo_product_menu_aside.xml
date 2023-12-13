@@ -11,9 +11,9 @@
                         <t t-foreach="combo_products" t-as="combo">
                             <input type="checkbox"
                                    name="combo_products"
-                                   class="form-check-input"
+                                   class="form-check-input combo-filter"
                                    t-att-value="combo"
-                                   t-att-checked="'checked' if combo in request.httprequest.args.getlist('combo_products') else None"
+                                   t-att-checked="'checked' if combo in selected_combos else None"
                                    />
                             <label>
                                 <t t-esc="combo"/>

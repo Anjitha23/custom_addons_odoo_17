@@ -22,18 +22,23 @@ class WebsiteComboVisibility(WebsiteSale):
         combo_ids = partner.combo_ids
 
         website = http.request.env['website'].get_current_website()
+        result.qcontext['selected_combos']=[]
 
         if combo_ids:
             print('dsssss')
             combo_names = [combo.name for combo in combo_ids]
             result.qcontext['combo_products'] = combo_names
+            print(combo_names)
 
             if combo_products:
                 print('hhhhh')
                 combo_products = [combo_products] if isinstance(combo_products, str) else combo_products
-
+                print(combo_products[0].split(','))
+                combine_filters = combo_products[0].split(',')
+                result.qcontext['selected_combos'] = combine_filters
                 selected_combos = http.request.env['website.sale.combo'].search(
-                    [('name', 'in', combo_products)])
+                    [('name', 'in', combine_filters)])
+                print(selected_combos)
                 if selected_combos:
                     combo_product_templates = selected_combos.mapped(
                         'product_ids')
