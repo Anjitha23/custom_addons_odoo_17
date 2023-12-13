@@ -38,12 +38,23 @@ class ComboProductMenu(Controller):
             })
 
         for product_variant in combo.product_ids:
-            order_line = request.env['sale.order.line'].sudo().create({
-                'order_id': order.id,
-                'product_id': product_variant.product_variant_id.id,
-                'product_uom_qty': 1,
-                'name': product_variant.name,
-                'price_unit': product_variant.list_price,
-            })
+            existing_line = order.order_line.filtered(
+                lambda
+                    line: line.product_id == product_variant.product_variant_id
+            )
+
+            if existing_line:
+                # Update quantity if the product already exists in the cart
+                existing_line.write(
+                    {'product_uom_qty': existing_line.product_uom_qty + 1})
+            else:
+                # Add a new line if the product is not in the cart
+                request.env['sale.order.line'].sudo().create({
+                    'order_id': order.id,
+                    'product_id': product_variant.product_variant_id.id,
+                    'product_uom_qty': 1,
+                    'name': product_variant.name,
+                    'price_unit': product_variant.list_price,
+                })
 
         return request.redirect('/shop/cart')
