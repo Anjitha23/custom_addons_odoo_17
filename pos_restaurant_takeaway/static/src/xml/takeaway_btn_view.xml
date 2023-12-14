@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <templates id="template" xml:space="preserve">
-<!--    button template-->
+    <!-- button template -->
     <t t-name="TakeAwayButton" owl="1">
-        <button class="control-button btn btn-light rounded-0 fw-bolder" t-on-click="() => this.onClickPay()">
+        <button class="control-button btn btn-light rounded-0 fw-bolder" t-on-click="onClickPay">
             <i class="fa fa-shopping-basket"> </i>
             <span/>
             <span>TakeAway</span>

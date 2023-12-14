@@ -4,13 +4,14 @@ import { usePos } from "@point_of_sale/app/store/pos_hook";
 
 export class TakeAwayButton extends ProductScreen {
     static template = "TakeAwayButton";
+
     setup() {
         this.pos = usePos();
     }
 
-    async _onClickPay() {
-        // Navigate to the payment screen
-        this.showScreen("PaymentScreen");
+    async onClickPay() {
+        // Navigate to the payment screen using the POS component
+        this.pos.showScreen("PaymentScreen");
     }
 }
 
