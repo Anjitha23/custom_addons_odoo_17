@@ -12,6 +12,8 @@
         'point_of_sale._assets_pos': [
             'pos_restaurant_takeaway/static/src/js/takeaway_btn.js',
             'pos_restaurant_takeaway/static/src/xml/takeaway_btn_view.xml',
+            'pos_restaurant_takeaway/static/src/js/takeaway_receipt_screen.js',
+            'pos_restaurant_takeaway/static/src/xml/takeaway_receipt_screen.xml',
         ],
     },
 

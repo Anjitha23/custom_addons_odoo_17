@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<templates>
+    <t t-name="TakeAwayOrderReceipt" t-inherit="point_of_sale.ReceiptHeader"
+       t-inherit-mode="extension" owl="1">
+        <xpath expr="//div[hasclass('cashier')]" position="after">
+<!--            <t t-if="takeAwayClicked === true">-->
+            <div>--------------------------------</div>
+            <span style="font-weight: bold;">Take-Away</span>
+            <div>--------------------------------</div>
+<!--            </t>-->
+        </xpath>
+    </t>
+</templates>

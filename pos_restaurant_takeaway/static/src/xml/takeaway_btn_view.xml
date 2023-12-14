@@ -2,10 +2,10 @@
 <templates id="template" xml:space="preserve">
 <!--    button template-->
     <t t-name="TakeAwayButton" owl="1">
-        <button class="control-button btn btn-light rounded-0 fw-bolder" t-on-click="() => this.onClick()">
+        <button class="control-button btn btn-light rounded-0 fw-bolder" t-on-click="() => this.onClickPay()">
             <i class="fa fa-shopping-basket"> </i>
             <span/>
             <span>TakeAway</span>
-        </button>>
+        </button>
     </t>
 </templates>
