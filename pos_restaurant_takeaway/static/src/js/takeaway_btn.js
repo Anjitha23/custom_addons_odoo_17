@@ -9,10 +9,16 @@ export class TakeAwayButton extends ProductScreen {
         this.pos = usePos();
     }
 
-    async onClickPay() {
-        // Navigate to the payment screen using the POS component
-        this.pos.showScreen("PaymentScreen");
+    onClick() {
+        console.log(this.pos.get_order())
+        // Toggle the value when the button is clicked
+        // Set takeaway value on the order
+        this.pos.get_order().set_takeaway(true);
+
+        // Log the current value (you can remove this in production)
+        console.log("Button Value:", this.isButtonEnabled);
     }
+
 }
 
 ProductScreen.addControlButton({

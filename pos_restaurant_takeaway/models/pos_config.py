@@ -7,7 +7,7 @@ class PosConfiguration(models.Model):
     """class to inherit the pos.config"""
     _inherit = 'pos.config'
 
-    is_dine_in = fields.Boolean(
+    is_takeaway = fields.Boolean(
         string='Pos TakeAway',
         help="TakeAway,Dine-in on Restaurant")
     token = fields.Boolean(

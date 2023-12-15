@@ -2,7 +2,9 @@
 <templates id="template" xml:space="preserve">
     <!-- button template -->
     <t t-name="TakeAwayButton" owl="1">
-        <button class="control-button btn btn-light rounded-0 fw-bolder" t-on-click="onClickPay">
+        <button class="control-button btn btn-light rounded-0 fw-bolder"
+                t-att-style="is_takeaway and 'background-color: #71639E;' or ''"
+                t-on-click="onClick">
             <i class="fa fa-shopping-basket"> </i>
             <span/>
             <span>TakeAway</span>
