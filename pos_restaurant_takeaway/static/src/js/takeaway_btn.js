@@ -7,6 +7,7 @@ export class TakeAwayButton extends ProductScreen {
 
     setup() {
         this.pos = usePos();
+
     }
 
     onClick() {
@@ -14,6 +15,8 @@ export class TakeAwayButton extends ProductScreen {
         // Toggle the value when the button is clicked
         // Set takeaway value on the order
         this.pos.get_order().set_takeaway(true);
+        this.pos.get_order().takeawayButtonClicked = true;
+
 
         // Log the current value (you can remove this in production)
         console.log("Button Value:", this.isButtonEnabled);
@@ -24,7 +27,7 @@ export class TakeAwayButton extends ProductScreen {
 ProductScreen.addControlButton({
     component: TakeAwayButton,
     position: ['before', 'OrderlineCustomerNoteButton'],
-    // condition: function () {
-    //     return this.pos.config.is_dine_in;
-    // },
+//     condition: function() {
+//            return this.env.pos.is_takeaway;
+//     },
 });
