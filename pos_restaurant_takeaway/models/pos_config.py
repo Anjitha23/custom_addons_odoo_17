@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""adding a discount tag field  to product form"""
+"""adding a boolean fields into pos configuration settings"""
 from odoo import fields, models
 
 
@@ -9,9 +9,11 @@ class PosConfiguration(models.Model):
 
     is_takeaway = fields.Boolean(
         string='Pos TakeAway',
-        help="TakeAway,Dine-in on Restaurant")
+        help="TakeAway, Dine-in on Restaurant")
     token = fields.Boolean(
         string='Generate Token',
-        help="This Token number starts from 1")
+        help="This Token number starts from 1",default=True)
+    token_number = fields.Char(string="Token Number",
+                               help="Token number starts from 1")
 
 

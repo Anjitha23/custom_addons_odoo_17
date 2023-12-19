@@ -25,9 +25,11 @@ export class TakeAwayButton extends ProductScreen {
 }
 
 ProductScreen.addControlButton({
+
     component: TakeAwayButton,
-    position: ['before', 'OrderlineCustomerNoteButton'],
-//     condition: function() {
-//            return this.env.pos.is_takeaway;
-//     },
+    condition: function () {
+            console.log("jkjkjjkj",this.pos)
+            return this.pos.config.is_takeaway;
+        },
+    position: ['before', 'OrderlineCustomerNoteButton']
 });
