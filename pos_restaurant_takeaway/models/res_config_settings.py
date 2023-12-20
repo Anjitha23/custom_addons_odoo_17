@@ -1,7 +1,5 @@
 import logging
-from odoo import fields, models, api
-
-_logger = logging.getLogger(__name__)
+from odoo import fields, models
 
 
 class ResConfigSettings(models.TransientModel):
@@ -20,7 +18,7 @@ class ResConfigSettings(models.TransientModel):
         help="This Token number starts from 1",
         readonly=False
     )
-    pos_token = fields.Char(
+    pos_token = fields.Integer(
         string="Token",
         help="The token will start from 1.",
         related="pos_config_id.token_number"

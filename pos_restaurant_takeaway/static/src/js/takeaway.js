@@ -13,6 +13,8 @@ patch(Order.prototype, {
         return {
             ...super.export_for_printing(...arguments),
             is_takeaway: this.is_takeaway,
+            token_number:this.token_number
+
         };
     },
 
