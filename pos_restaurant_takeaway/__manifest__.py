@@ -7,6 +7,7 @@
     'description': """The POS user can make orders as Dine-in or Take away, and it will create separate token for Take away orders.""",
     'data': [
         'views/pos_config_view.xml',
+        'views/pos_order_view.xml'
     ],
     'assets': {
         'point_of_sale._assets_pos': [

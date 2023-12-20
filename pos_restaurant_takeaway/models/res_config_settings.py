@@ -1,4 +1,5 @@
-import logging
+# -*- coding: utf-8 -*-
+"""adding a Takeaway and generate toke boolean field to pos settings"""
 from odoo import fields, models
 
 

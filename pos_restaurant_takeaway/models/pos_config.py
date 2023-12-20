@@ -1,12 +1,6 @@
+# -*- coding: utf-8 -*-
+"""adding a Takeaway and generate toke boolean field to pos settings"""
 from odoo import api, fields, models
-
-class ResConfigSettings(models.TransientModel):
-    _inherit = 'res.config.settings'
-
-    pos_token = fields.Integer(
-        string='POS Token',
-        help='Token number for POS orders',
-    )
 
 class PosConfiguration(models.Model):
     _inherit = 'pos.config'
@@ -23,6 +17,7 @@ class PosConfiguration(models.Model):
     token_number = fields.Integer(
         string="Token Number",
         help="Token number starts from 1",
+        default=1
     )
 
     @api.model
@@ -57,6 +52,7 @@ class PosConfiguration(models.Model):
                 print(f"Is Takeaway: {pos_config.is_takeaway}")
                 print(
                     f"Token Configuration: {pos_config.token}, Token Number: {pos_config.token_number}")
+
                 return pos_config.token_number
             else:
                 print(f"No pos.config found or token is not enabled for order with pos_reference: {uid}")

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+<!--    <record id="pos_order_form" model="ir.ui.view">-->
+<!--        <field name="name">pos.order.view.form.inherit</field>-->
+<!--        <field name="model">pos.order</field>-->
+<!--        <field name="inherit_id" ref="point_of_sale.view_pos_pos_form"/>-->
+<!--        <field name="arch" type="xml">-->
+<!--            <xpath expr="//field[@name='table_id']" position="before">-->
+<!--                <field name="is_takeaway" string="TakeAway"/>-->
+<!--            </xpath>-->
+<!--        </field>-->
+<!--    </record>-->
+
+    <!-- Inherits pos order search view to add Dine-in and Takeaway filters -->
+    <record id="view_pos_order_filter" model="ir.ui.view">
+        <field name="name">pos.order.filter.inherit.pos_takeaway</field>
+        <field name="model">pos.order</field>
+        <field name="inherit_id" ref="point_of_sale.view_pos_order_filter"/>
+        <field name="arch" type="xml">
+            <search position="inside">
+                <filter string="Dine In" name="take_away"
+                        domain="[('is_takeaway','=', False)]"/>
+                <filter string="Take Away" name="take_away"
+                        domain="[('is_takeaway','=', True)]"/>
+            </search>
+        </field>
+    </record>
+</odoo>
