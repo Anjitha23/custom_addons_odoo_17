@@ -10,10 +10,11 @@ patch(Order.prototype, {
         }
     },
     export_for_printing() {
+    console.log("this",this)
         return {
             ...super.export_for_printing(...arguments),
             is_takeaway: this.is_takeaway,
-            token_number:this.token_number
+            token_number:this.pos.config.token_number
 
         };
     },

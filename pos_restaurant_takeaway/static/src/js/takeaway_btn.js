@@ -7,9 +7,13 @@ export class TakeAwayButton extends ProductScreen {
     static template = "TakeAwayButton";
 
     setup() {
-        this.pos = usePos();
-        this.orm = useService("orm");
-
+        try {
+            this.pos = usePos();
+            this.orm = useService("orm");
+            console.log("TakeAwayButton setup:", this.pos, this.orm);
+        } catch (error) {
+            console.error("Error in TakeAwayButton setup:", error);
+        }
     }
 
     async onClick() {
@@ -22,15 +26,17 @@ export class TakeAwayButton extends ProductScreen {
             order.takeawayButtonClicked = true;
 
             // Call the generate_token function on the server using useService
-            const uid = order.uid;  // Replace 'uid' with the actual property name that stores the order's UID
+            const uid = order.uid;
             const result = await this.orm.call("pos.config", "generate_token", [uid]);
-            console.log("RPC Result:", result);
+
+            // Update the order with the generated token number
+//            this.env.pos.token_number = result;
             console.log("Generated Token:", result);
 
+            // Rest of the code...
 
-            // Add additional logic based on the response if needed
         } catch (error) {
-            console.log("Error calling generate_token:", error);
+            console.error("Error in TakeAwayButton onClick:", error);
             console.log("Error Response:", error.data); // Log the error response
 
             // Handle the error, e.g., show a user-friendly message
@@ -42,8 +48,13 @@ export class TakeAwayButton extends ProductScreen {
 ProductScreen.addControlButton({
     component: TakeAwayButton,
     condition: function () {
-        console.log("Condition Check:", this.pos.config.is_takeaway);
-        return this.pos.config.is_takeaway;
+        try {
+            console.log("Condition Check:", this.pos.config.is_takeaway);
+            return this.pos.config.is_takeaway;
+        } catch (error) {
+            console.error("Error in condition check:", error);
+            return false; // or handle the error accordingly
+        }
     },
     position: ['before', 'OrderlineCustomerNoteButton']
 });

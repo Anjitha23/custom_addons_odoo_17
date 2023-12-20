@@ -40,6 +40,7 @@ class PosConfiguration(models.Model):
         # Directly search for pos.order instead of pos.config
         order = self.env['pos.order'].search([('pos_reference', 'ilike', uid)], limit=1)
 
+
         # Check if the order exists
         if order:
             # Find the associated pos.config record
