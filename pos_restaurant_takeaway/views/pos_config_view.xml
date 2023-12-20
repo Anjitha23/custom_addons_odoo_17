@@ -9,10 +9,10 @@
             <xpath expr="//block[@id='pos_inventory_section']" position="after">
                 <block title="Other Features" id="pos_takeaway">
                     <setting title="TakeAway,Dine-in" string="Pos TakeAway" help="TakeAway,Dine-in on Restaurant">
-                        <field name="is_takeaway" required="pos_config_id"/>
+                        <field name="pos_is_takeaway" required="pos_config_id"/>
                     </setting>
                         <setting string="Generate Token" help="This Token number starts from 1"
-                                 invisible="not is_takeaway">
+                                 invisible="not pos_is_takeaway">
                             <field name="generate_token"/>
                         </setting>
                 </block>
