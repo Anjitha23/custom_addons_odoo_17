@@ -4,6 +4,7 @@ from odoo import fields, models
 
 
 class ResConfigSettings(models.TransientModel):
+    """declaring a class for ResConfigSettings"""
     _inherit = 'res.config.settings'
 
     pos_is_takeaway = fields.Boolean(

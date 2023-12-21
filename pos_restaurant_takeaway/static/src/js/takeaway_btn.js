@@ -7,22 +7,15 @@ export class TakeAwayButton extends ProductScreen {
     static template = "TakeAwayButton";
 
     setup() {
-        try {
             this.pos = usePos();
             this.orm = useService("orm");
-            console.log("TakeAwayButton setup:", this.pos, this.orm);
-        } catch (error) {
-            console.error("Error in TakeAwayButton setup:", error);
-        }
     }
 
     async onClick() {
-        try {
-            console.log("TakeAwayButton onClick");
-
             // Set takeaway value on the order
             const order = this.pos.get_order();
             order.set_takeaway(true);
+            order.set_token_number(true);
             order.takeawayButtonClicked = true;
 
             // Check if there are any order lines
@@ -35,29 +28,15 @@ export class TakeAwayButton extends ProductScreen {
             // Call the generate_token function on the server using useService
             const uid = order.uid;
             const result = await this.orm.call("pos.config", "generate_token", [uid]);
+//            order.set_token_number(result.token_number);
 
-            // Update the order with the generated token number
-            console.log("Generated Token:", result);
-        } catch (error) {
-            console.error("Error in TakeAwayButton onClick:", error);
-            console.log("Error Response:", error.data); // Log the error response
-
-            // Handle the error, e.g., show a user-friendly message
-            // You may want to notify the user or take appropriate action
-        }
     }
 }
 
 ProductScreen.addControlButton({
     component: TakeAwayButton,
     condition: function () {
-        try {
-            console.log("Condition Check:", this.pos.config.is_takeaway);
             return this.pos.config.is_takeaway;
-        } catch (error) {
-            console.error("Error in condition check:", error);
-            return false; // or handle the error accordingly
-        }
     },
     position: ['before', 'OrderlineCustomerNoteButton']
 });

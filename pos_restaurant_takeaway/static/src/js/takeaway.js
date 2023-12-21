@@ -8,9 +8,9 @@ patch(Order.prototype, {
         if (!this.pos.config.is_takeaway) {
             this.is_takeaway = false; // Set takeaway to true during setup
         }
+        this.token_number = null;
     },
     export_for_printing() {
-    console.log("this",this)
         return {
             ...super.export_for_printing(...arguments),
             is_takeaway: this.is_takeaway,
@@ -35,5 +35,13 @@ patch(Order.prototype, {
      */
     get_takeaway() {
         return this.is_takeaway;
+    },
+
+    set_token_number(tokenNumber) {
+        this.token_number = tokenNumber; // Set the token_number property
+    },
+
+    get_token_number() {
+        return this.token_number; // Get the token_number property
     },
 });

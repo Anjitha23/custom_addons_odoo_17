@@ -3,6 +3,7 @@
 from odoo import fields, models
 
 class PosOrder(models.Model):
+    """declaring class for PosOrder"""
     _inherit = 'pos.order'
 
     is_takeaway = fields.Boolean(

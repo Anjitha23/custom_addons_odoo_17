@@ -3,6 +3,7 @@
 from odoo import api, fields, models
 
 class PosConfiguration(models.Model):
+    """declaring the class for PosConfiguration """
     _inherit = 'pos.config'
 
     is_takeaway = fields.Boolean(
@@ -35,9 +36,6 @@ class PosConfiguration(models.Model):
 
         # Directly search for pos.order instead of pos.config
         order = self.env['pos.order'].search([('pos_reference', 'ilike', uid)], limit=1)
-
-
-        # Check if the order exists
         if order:
             # Find the associated pos.config record
             pos_config = order.config_id
@@ -47,17 +45,8 @@ class PosConfiguration(models.Model):
                 self.env['ir.config_parameter'].sudo().set_param(
                     'pos_restaurant_takeaway.pos_token',
                     pos_config.token_number)
-
-                # Print statements for debugging
-                print(f"Token generated: {pos_config.token_number}")
-                print(f"Is Takeaway: {pos_config.is_takeaway}")
-                print(
-                    f"Token Configuration: {pos_config.token}, Token Number: {pos_config.token_number}")
-
                 return pos_config.token_number
             else:
-                print(f"No pos.config found or token is not enabled for order with pos_reference: {uid}")
                 return 0
         else:
-            print(f"No order found with pos_reference: {uid}")
             return 0
