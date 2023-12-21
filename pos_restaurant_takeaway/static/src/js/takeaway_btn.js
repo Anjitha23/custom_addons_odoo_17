@@ -25,16 +25,19 @@ export class TakeAwayButton extends ProductScreen {
             order.set_takeaway(true);
             order.takeawayButtonClicked = true;
 
+            // Check if there are any order lines
+            if (order.get_orderlines().length === 0) {
+                // If no order lines, display an alert
+                alert("Cannot proceed with takeaway. Please add items to the order.");
+                return;
+            }
+
             // Call the generate_token function on the server using useService
             const uid = order.uid;
             const result = await this.orm.call("pos.config", "generate_token", [uid]);
 
             // Update the order with the generated token number
-//            this.env.pos.token_number = result;
             console.log("Generated Token:", result);
-
-            // Rest of the code...
-
         } catch (error) {
             console.error("Error in TakeAwayButton onClick:", error);
             console.log("Error Response:", error.data); // Log the error response

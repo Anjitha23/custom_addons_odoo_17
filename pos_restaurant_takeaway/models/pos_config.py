@@ -22,6 +22,7 @@ class PosConfiguration(models.Model):
 
     @api.model
     def generate_token(self, uid):
+
         """
         This function checks whether the order is a take-away order or a dine-in.
         If it is a take-away order, it will create the token number for that
