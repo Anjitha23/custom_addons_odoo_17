@@ -9,20 +9,11 @@ export class TakeAwayButton extends ProductScreen {
     setup() {
         this.pos = usePos();
         this.orm = useService("orm");
-
-        // Ensure the existence of this.props.data
-        if (!this.props.data) {
-            this.props.data = {};
-        }
-
-        // Initialize data properties
-        this.props.data.token_number = null;
     }
 
     async onClick() {
         const order = this.pos.get_order();
         order.set_takeaway(true);
-        order.set_token_number(true);
         order.takeawayButtonClicked = true;
 
         if (order.get_orderlines().length === 0) {
@@ -31,19 +22,10 @@ export class TakeAwayButton extends ProductScreen {
         }
 
         const uid = order.uid;
-
         // Call the generate_token function on the server using useService
         const result = await this.orm.call("pos.config", "generate_token", [uid]);
-
         // Update the data property with the received token number
-                console.log('Token number received:', result);
-        console.log('token',this.props.data.token_number);
         this.pos.config.token_number = result
-        console.log('props',this.props)
-
-        // Log for debugging
-
-//        console.log('Updated props.data.token_number:', this.props.data.token_number);
     }
 }
 

@@ -11,5 +11,4 @@ class PosOrder(models.Model):
         help='TakeAway, Dine-in on Restaurant',
         readonly=True
     )
-    token_number = fields.Integer(string="Token Number",
-                               help="Token number starts from 1")
+
